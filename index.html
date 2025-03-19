@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Euromillions App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            background-color: #f1f1f1;
+        }
+
+        .tablink {
+            flex: 1;
+            padding: 14px;
+            text-align: center;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background-color: #ddd;
+            color: black;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .tablink:hover {
+            background-color: #ccc;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+        }
+
+        #results {
+            margin-top: 20px;
+        }
+
+        #csvTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #csvTable th, #csvTable td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        #csvTable th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #csvTable tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+            display: block;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 600px) {
+            .tablink {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Euromillions Number anaiysis and generate numbers</h1>
+    </header>
+
+    <div class="tabs">
+        <button class="tablink" onclick="openTab(event, 'uploadTab')">Back to Results</button>
+        <button class="tablink" onclick="openTab(event, 'analysisTab')">Analysis</button>
+        <button class="tablink" onclick="openTab(event, 'suggestionsTab')">Suggestions</button>
+        <button class="tablink" onclick="openTab(event, 'probabilityTab')">Probability</button>
+        <button class="tablink" onclick="openTab(event, 'filtersTab')">Combinations</button>
+    </div>
+
+    <div id="uploadTab" class="tabcontent" style="display: block;">
+        <h2>Upload CSV and Analyze Euromillions Data</h2>
+        <input type="file" id="fileInput">
+        <button id="uploadFile">Upload</button>
+        <div id="results">
+            <table id="csvTable">
+                <thead></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="analysisTab" class="tabcontent">
+        <h2>Analysis Results</h2>
+        <div id="analysisResults"></div>
+    </div>
+
+    <div id="suggestionsTab" class="tabcontent">
+        <h2>Generate Suggestions</h2>
+        <button onclick="generateSuggestions()">Generate Suggestions</button>
+        <div id="suggestionResults"></div>
+    </div>
+
+    <div id="probabilityTab" class="tabcontent">
+        <h2>Calculate Probability</h2>
+        <input type="text" id="inputNumber" placeholder="Enter a number">
+        <select id="numberType">
+            <option value="main">Main Ball</option>
+            <option value="lucky">Lucky Star</option>
+        </select>
+        <button onclick="calculateProbability()">Calculate</button>
+        <div id="probabilityResult"></div>
+    </div>
+
+    <div id="filtersTab" class="tabcontent">
+        <h2>Popular Combinations</h2>
+        <input type="number" id="inputCount" placeholder="Enter combinations count">
+        <button onclick="showPopularCombinations()">Show Combinations</button>
+        <div id="combinationResults"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
