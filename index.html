@@ -6,6 +6,7 @@
     <title>Euromillions App</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -103,11 +104,25 @@
             }
         }
     </style>
+
+    <!-- JavaScript to block direct access -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const allowedReferrer = "https://your-main-site.vercel.app"; // Replace with your actual main site URL
+            const referrer = document.referrer;
+
+            if (!referrer || !referrer.startsWith(allowedReferrer)) {
+                // Redirect back to the main site if accessed directly
+                window.location.href = allowedReferrer;
+            }
+        });
+    </script>
+
 </head>
 <body>
     <header>
-        <h1>Euromillions Number anaiysis and generate numbers</h1>
-        Download euromillions results from the national lottery in csv format and upload
+        <h1>Euromillions Number Analysis and Generate Numbers</h1>
+        Download Euromillions results from the national lottery in CSV format and upload
     </header>
 
     <div class="tabs">
@@ -117,6 +132,9 @@
         <button class="tablink" onclick="openTab(event, 'probabilityTab')">Probability</button>
         <button class="tablink" onclick="openTab(event, 'filtersTab')">Combinations</button>
     </div>
+</body>
+</html>
+
 
     <div id="uploadTab" class="tabcontent" style="display: block;">
         <h2></h2>
